@@ -1,5 +1,6 @@
 package com.lab.sidesafe.controller;
 
+import com.lab.sidesafe.model.DadosLogin;
 import com.lab.sidesafe.model.UserModel;
 import com.lab.sidesafe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,11 @@ public class UserController {
     public void  deleteUser(@PathVariable Long userId){
         userService.delete(userId);
 
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserModel> autheticate(@RequestBody DadosLogin dadosLogin) throws Exception {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body( userService.autheticate(dadosLogin));
     }
 
 

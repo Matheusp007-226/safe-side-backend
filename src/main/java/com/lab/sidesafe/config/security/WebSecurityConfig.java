@@ -13,16 +13,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig  {
 
+  @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
       http
               .httpBasic()
               .and()
-              .authorizeRequests()
-              .anyRequest().authenticated()
+              .authorizeHttpRequests()
+              .anyRequest().permitAll()
               .and()
               .csrf().disable();
 
@@ -31,10 +31,10 @@ public class WebSecurityConfig  {
 
 
 
+
     @Bean
     public PasswordEncoder passwordEncoder(){
 
         return new BCryptPasswordEncoder();
     }
-
 }

@@ -51,7 +51,7 @@ public class UserModel implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.roles;
     }
 
     @Override
@@ -61,12 +61,12 @@ public class UserModel implements UserDetails, Serializable {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.name;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override

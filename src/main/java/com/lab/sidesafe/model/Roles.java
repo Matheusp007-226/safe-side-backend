@@ -3,6 +3,7 @@ package com.lab.sidesafe.model;
 import com.lab.sidesafe.enums.RoleName;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "TB_ROLE")
-public class Roles {
+public class Roles implements GrantedAuthority {
 
 
     @Id
@@ -21,4 +22,8 @@ public class Roles {
     @Column(nullable = false, unique = true)
     private RoleName roleName;
 
+    @Override
+    public String getAuthority() {
+        return this.roleName.toString();
+    }
 }
